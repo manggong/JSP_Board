@@ -65,26 +65,28 @@
 	</nav>
 	<div class="container">
 		<div class="row">
-			<table class="table table-striped"
-				style="text-align: center; border: 1px solid #dddddd">
-				<thead>
-					<tr>
-						<th style="background-color: #eeeeee; text-align: center;">number</th>
-						<th style="background-color: #eeeeee; text-align: center;">title</th>
-						<th style="background-color: #eeeeee; text-align: center;">author</th>
-						<th style="background-color: #eeeeee; text-align: center;">date</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>1</td>
-						<td>hello.</td>
-						<td>kim</td>
-						<td>2020-08-13</td>
-					</tr>
-				</tbody>
-			</table>
-			<a href="write.jsp" class="btn btn-primary pull-right">Writing</a>
+			<form method="post" action="writeAction.jsp">
+				<table class="table table-striped"
+					style="text-align: center; border: 1px solid #dddddd">
+					<thead>
+						<tr>
+							<th colspan="2"
+								style="background-color: #eeeeee; text-align: center;">Writing</th>
+					</thead>
+					<tbody>
+						<tr>
+							<td><input type="text" class="form-control"
+								placeholder="title" name="bbsTitle" maxlength="20" /></td>
+						</tr>
+						<tr>
+							<td><textarea class="form-control" placeholder="content"
+									name="bbsContent" maxlength="2048" style="height: 30vh;"></textarea></td>
+						</tr>
+					</tbody>
+				</table>
+				<input type="submit" class="btn btn-primary pull-right"
+					value="write" />
+			</form>
 		</div>
 	</div>
 </body>
