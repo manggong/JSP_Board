@@ -91,7 +91,7 @@ public class BbsDAO {
 		}
 		return list;
 	}
-	
+
 	public boolean nextPage(int pageNumber) {
 		String SQL = "SELECT * FROM bbs WHERE bbsID < ? AND bbsAvailable = 1 ORDER BY bbsID DESC LIMIT 10";
 		try {
@@ -106,7 +106,7 @@ public class BbsDAO {
 		}
 		return false;
 	}
-	
+
 	public Bbs getBbs(int bbsID) {
 		String SQL = "SELECT * FROM bbs WHERE bbsID = ?";
 		try {
@@ -127,5 +127,31 @@ public class BbsDAO {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public int update(int bbsID, String bbsTitle, String bbsContent) {
+		String SQL = "UPDATE bbs SET bbsTitle = ?, bbsContent =? WHERE bbsID = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, bbsTitle);
+			pstmt.setString(2, bbsContent);
+			pstmt.setInt(3, bbsID);
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; // DB Error
+	}
+
+	public int delete(int bbsID) {
+		String SQL = "UPDATE bbs SET bbsAvailable = 0 WHERE bbsID = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, bbsID);
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; // DB Error
 	}
 }
